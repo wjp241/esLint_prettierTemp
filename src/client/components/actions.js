@@ -1,1 +1,1 @@
-export const SET_SEARCH_TERM = 'SET_SEARCH_TEERM';
+export const SET_SEARCH_TERM = "SET_SEARCH_TEERM";
