@@ -10,9 +10,11 @@ const Calendar = () => {
     <Table responsive bordered>
       <thead>
         <YrMon />
+      </thead>
+      <tbody>
         <WkDays />
         <Dates />
-      </thead>
+      </tbody>
     </Table>
   );
 };
