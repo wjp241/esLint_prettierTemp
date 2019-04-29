@@ -7,8 +7,13 @@
     "prettier",
     "prettier/react"
   ],
-  "rules":{
+  "rules": {
     "react/prop-types": 0
+  },
+  "settings": {
+    "react": {
+      "version": "^16.8.4"
+    }
   },
   "plugins": [
     "react",
