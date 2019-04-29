@@ -1,7 +1,7 @@
 import React from "react";
 import dateFns from "date-fns";
 import { connect } from "react-redux";
-
+import Button from "react-bootstrap/Button";
 const Dates = props => {
   const { currentMonth, selectedDate } = props;
   const monthStart = dateFns.startOfMonth(currentMonth);
@@ -25,7 +25,15 @@ const Dates = props => {
       formattedDate = dateFns.format(day, dateFormat);
       days.push(
         <td key={formattedDate} className="text-center">
-          <span className="number">{formattedDate}</span>
+          {!dateFns.isSameMonth(day, monthStart) ? (
+            <Button variant="link" disabled>
+              {formattedDate}
+            </Button>
+          ) : (
+            <Button variant="link">{formattedDate}</Button>
+          )}
+
+          {/* // <span className="number">{formattedDate}</span> */}
         </td>
       );
       day = dateFns.addDays(day, 1);
