@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import now from "./now.jsx";
+import currentMonth from "./currentMonth";
 
 export default combineReducers({
-  now
+  currentMonth
 });

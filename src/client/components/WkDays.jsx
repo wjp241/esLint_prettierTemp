@@ -1,19 +1,17 @@
 import React from "react";
-import moment from "moment";
-
-const Days = () => {
-  const weekdayshort = moment.weekdaysShort();
+import dateFns from "date-fns";
+const WkDays = () => {
   return (
     <tr>
-      {weekdayshort.map(day => {
+      {/* {weekdayshort.map(day => {
         return (
           <th key={day} className="text-center">
             {day}
           </th>
         );
-      })}
+      })} */}
     </tr>
   );
 };
 
-export default Days;
+export default WkDays;

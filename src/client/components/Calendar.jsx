@@ -1,15 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import Table from "react-bootstrap/Table";
-import moment from "moment";
 import YrMon from "./YrMon.jsx";
-import Days from "./Days.jsx";
+import WkDays from "./WkDays.jsx";
+import Dates from "./Dates.jsx";
+
 const Calendar = () => {
   return (
     <Table responsive bordered>
       <thead>
         <YrMon />
-        <Days />
+        <WkDays />
+        <Dates />
       </thead>
     </Table>
   );
