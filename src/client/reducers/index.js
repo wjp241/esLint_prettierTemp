@@ -1,2 +1,6 @@
 import { combineReducers } from "redux";
-export default combineReducers({});
+import now from "./now.jsx";
+
+export default combineReducers({
+  now
+});
