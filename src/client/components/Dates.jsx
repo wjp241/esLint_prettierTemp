@@ -35,7 +35,7 @@ const Dates = props => {
               placement="top"
               overlay={<EventModal />}
             >
-              <Button variant="outline-primary">{formattedDate}</Button>
+              <Button variant="link">{formattedDate}</Button>
             </OverlayTrigger>
           )}
         </td>

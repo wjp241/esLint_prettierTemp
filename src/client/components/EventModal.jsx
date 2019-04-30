@@ -23,10 +23,10 @@ class EventModal extends React.Component {
   }
 
   render() {
-    console.log("#######################");
-    return (
-      <Modal {...this.props} show={this.state.show} onHide={this.handleClose}>
-        <Modal.Header closeButton>
+    console.log(this.props);
+    return this.state.show === true ? (
+      <Modal.Dialog {...this.props} style={{ ...this.props.style }}>
+        <Modal.Header onClick={this.handleClose} closeButton>
           <Modal.Title>Modal title</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -40,8 +40,8 @@ class EventModal extends React.Component {
             Save changes
           </Button>
         </Modal.Footer>
-      </Modal>
-    );
+      </Modal.Dialog>
+    ) : null;
   }
 }
 
