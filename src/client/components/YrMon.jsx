@@ -10,10 +10,18 @@ const YrMon = props => {
 
   return (
     <tr>
-      <th colSpan="7" className="text-center">
-        <Button onClick={props.handleSubtractMonth} />
-        {dateFns.format(props.currentMonth, dateFormat)}
-        <Button onClick={props.handleAddMonth} />
+      <th colSpan="7">
+        <div className="d-flex justify-content-between align-items-center">
+          <div>
+            <Button onClick={props.handleSubtractMonth} />
+            <Button onClick={props.handleAddMonth} />
+            {dateFns.format(props.currentMonth, dateFormat)}
+          </div>
+          <div>
+            <Button>Events</Button>
+            <Button>Add</Button>
+          </div>
+        </div>
       </th>
     </tr>
   );
