@@ -2,8 +2,13 @@ import React from "react";
 import dateFns from "date-fns";
 import { connect } from "react-redux";
 import Button from "react-bootstrap/Button";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+
+import changeTarget from "./../actionCreators/changeTarget";
+import toggleShow from "./../actionCreators/toggleShow";
+
 const Dates = props => {
-  const { currentMonth, selectedDate } = props;
+  const { currentMonth } = props;
   const monthStart = dateFns.startOfMonth(currentMonth);
   const monthEnd = dateFns.endOfMonth(monthStart);
   //first and last dates for the first and last weeks of month
@@ -14,11 +19,27 @@ const Dates = props => {
   const rows = [];
   let day = startDate;
   let formattedDate = "";
-  // const onDateClick = day => {
-  //   this.setState({
-  //     selectedDate: day
-  //   });
+  // const attachRef = target => {
+  //   props.handleAttachRef(target);
   // };
+
+  const renderTooltip = props => {
+    return (
+      <div
+        {...props}
+        style={{
+          backgroundColor: "rgba(0, 0, 0, 0.85)",
+          padding: "2px 10px",
+          color: "white",
+          borderRadius: 3,
+          ...props.style
+        }}
+      >
+        Simple tooltip
+      </div>
+    );
+  };
+
   while (day <= endDate) {
     const days = [];
     for (let i = 0; i < 7; i++) {
@@ -30,10 +51,14 @@ const Dates = props => {
               {formattedDate}
             </Button>
           ) : (
-            <Button variant="link">{formattedDate}</Button>
+            <OverlayTrigger
+              trigger="click"
+              placement="right-start"
+              overlay={renderTooltip}
+            >
+              <Button variant="outline-primary">{formattedDate}</Button>
+            </OverlayTrigger>
           )}
-
-          {/* // <span className="number">{formattedDate}</span> */}
         </td>
       );
       day = dateFns.addDays(day, 1);
@@ -41,19 +66,20 @@ const Dates = props => {
     rows.push(<tr>{days}</tr>);
   }
   return rows;
-  // return (
-  // <div className="body">{rows}</div>
-  // );
 };
 
-const mapStateToProps = state => ({ currentMonth: state.currentMonth });
+const mapStateToProps = state => ({
+  target: state.target,
+  show: state.show,
+  currentMonth: state.currentMonth
+});
 const mapDispatchToProps = dispatch => ({
-  // handleAddMonth() {
-  //   dispatch(addMonth());
-  // },
-  // handleSubtractMonth() {
-  //   dispatch(subtractMonth());
-  // }
+  handleAttachRef(target) {
+    dispatch(changeTarget(target));
+  },
+  handleOnClick() {
+    dispatch(toggleShow());
+  }
 });
 export default connect(
   mapStateToProps,
