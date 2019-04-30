@@ -3,9 +3,8 @@ import dateFns from "date-fns";
 import { connect } from "react-redux";
 import Button from "react-bootstrap/Button";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-
 import changeTarget from "./../actionCreators/changeTarget";
-import toggleShow from "./../actionCreators/toggleShow";
+import EventModal from "./EventModal.jsx";
 
 const Dates = props => {
   const { currentMonth } = props;
@@ -19,26 +18,6 @@ const Dates = props => {
   const rows = [];
   let day = startDate;
   let formattedDate = "";
-  // const attachRef = target => {
-  //   props.handleAttachRef(target);
-  // };
-
-  const renderTooltip = props => {
-    return (
-      <div
-        {...props}
-        style={{
-          backgroundColor: "rgba(0, 0, 0, 0.85)",
-          padding: "2px 10px",
-          color: "white",
-          borderRadius: 3,
-          ...props.style
-        }}
-      >
-        Simple tooltip
-      </div>
-    );
-  };
 
   while (day <= endDate) {
     const days = [];
@@ -53,8 +32,8 @@ const Dates = props => {
           ) : (
             <OverlayTrigger
               trigger="click"
-              placement="right-start"
-              overlay={renderTooltip}
+              placement="top"
+              overlay={<EventModal />}
             >
               <Button variant="outline-primary">{formattedDate}</Button>
             </OverlayTrigger>
@@ -70,15 +49,11 @@ const Dates = props => {
 
 const mapStateToProps = state => ({
   target: state.target,
-  show: state.show,
   currentMonth: state.currentMonth
 });
 const mapDispatchToProps = dispatch => ({
   handleAttachRef(target) {
     dispatch(changeTarget(target));
-  },
-  handleOnClick() {
-    dispatch(toggleShow());
   }
 });
 export default connect(
